@@ -1,10 +1,13 @@
 var current_input = "0";
 var memory = "0";
 var operator = 0;
-var other_Memory = current_input;
+var other_memory = current_input;
 var deg = 0;
 var rad = 1;
-// Helper function for displaying the current input
+
+/**
+ * Displays the current Input
+ */
 function displayCurrentInput() {
     document.getElementById('screen').value = current_input;
 }
@@ -63,21 +66,20 @@ function allClear() {
 function storeOperator(op) {
     if (op.indexOf("*") > -1) {
         operator = 1;
-    }; //codes for *
+    }
     if (op.indexOf("/") > -1) {
         operator = 2;
-    }; // slash (divide)
+    }
     if (op.indexOf("+") > -1) {
         operator = 3;
-    }; // sum
+    }
     if (op.indexOf("-") > -1) {
         operator = 4;
-    }; // difference
+    }
     if (op.indexOf("^") > -1) {
         operator = 5;
-        // exponent
-    };
-    memory = current_input; //store value
+    }
+    memory = current_input;
     current_input = "";
     displayCurrentInput();
     console.log(op);
@@ -91,7 +93,7 @@ function storeOperator(op) {
 function calculate() {
     if (operator == 1) {
         current_input = eval(memory) * eval(current_input);
-    };
+    }
     if (operator == 2) {
         if (eval(current_input) == 0) {
             current_input = "undefined";
@@ -99,13 +101,13 @@ function calculate() {
         else {
             current_input = eval(memory) / eval(current_input);
         }
-    };
+    }
     if (operator == 3) {
         current_input = eval(memory) + eval(current_input);
-    };
+    }
     if (operator == 4) {
         current_input = eval(memory) - eval(current_input);
-    };
+    }
     if (operator == 5 && current_input < 0) {
         var power_of = -1 * eval(current_input);
         var base = eval(memory);
@@ -125,7 +127,7 @@ function calculate() {
             console.log(base + "^" + (i + 1) + " = " + final);
         }
         current_input = final;
-    };
+    }
     operator = 0; //clear operator
     memory = "0"; //clear memory
     displayCurrentInput();
@@ -171,7 +173,7 @@ function factorial() {
     }
     else {
         for (i = 1; i <= current_input; i++) {
-            fact = fact * iother_Memory;
+            fact = fact * iother_memory;
         }
         current_input = fact;
     }
@@ -256,30 +258,30 @@ function toDegree() {
  * Saves the memory as the current input
  */
 function ms() {
-    other_Memory = current_input;
-    console.log(other_Memory);
+    other_memory = current_input;
+    console.log(other_memory);
 }
 
 /**
  * Recalls the saved memory
  */
 function mr() {
-    current_input = other_Memory;
+    current_input = other_memory;
     displayCurrentInput();
-    console.log("memory is " + other_Memory);
+    console.log("memory is " + other_memory);
 }
 
 /**
  * Adds the current calc input from the stored memory
  */
-function mplus() {
-    other_Memory = eval(other_Memory) + eval(current_input);
-    console.log("memory is " + other_Memory);
+function mPlus() {
+    other_memory = eval(other_memory) + eval(current_input);
+    console.log("memory is " + other_memory);
 }
 
 /**
  * Subtracts the current calc input from the stored memory
  */
-function mminus() {
-    other_Memory = eval(other_Memory) - eval(current_input);
+function mMinus() {
+    other_memory = eval(other_memory) - eval(current_input);
 }
