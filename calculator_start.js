@@ -1,22 +1,13 @@
-/** TODO:
- * 1. Add these new functions: percentage, inverse, factorial, square and square root
- * 2. Bootstrap it to make it pretty!
- * 3. User can only type numbers in the display (30 max!), and the numbers are right aligned.
- * 4. Fix divide by 0 errors!
- * 5. Add the ability to clear the current input, but not memory.
- * 6. Challenge: Add trig functions (in radian AND degree mode)
- * 7. Extra Challenge: Add mc, m+, m-, mr butons that work!
- * 8. Super Challenge: Add ( and ) buttons that work!
- * 9. Super Duper Challenge: Add exponents (negatives too!)
- */
-
 var currentInput = "0";
 var memory = "0";
 var operator = 0;
 var otherMemory = currentInput;
 var deg = 0;
 var rad = 1;
-// Helper function for displaying the current input
+
+/**
+ * Displays the current Input
+ */
 function displayCurrentInput() {
     document.getElementById('screen').value = currentInput;
 }
@@ -75,21 +66,21 @@ function allClear() {
 function storeOperator(op) {
     if (op.indexOf("*") > -1) {
         operator = 1;
-    }; //codes for *
+    }
     if (op.indexOf("/") > -1) {
         operator = 2;
-    }; // slash (divide)
+    }
     if (op.indexOf("+") > -1) {
         operator = 3;
-    }; // sum
+    }
     if (op.indexOf("-") > -1) {
         operator = 4;
-    }; // difference
+    }
     if (op.indexOf("^") > -1) {
         operator = 5;
-        // exponent
-    };
-    memory = currentInput; //store value
+    }
+
+    memory = currentInput;
     currentInput = "";
     displayCurrentInput();
     console.log(op);
@@ -103,7 +94,7 @@ function storeOperator(op) {
 function calculate() {
     if (operator == 1) {
         currentInput = eval(memory) * eval(currentInput);
-    };
+    }
     if (operator == 2) {
         if (eval(currentInput) == 0) {
             currentInput = "undefined";
@@ -111,13 +102,13 @@ function calculate() {
         else {
             currentInput = eval(memory) / eval(currentInput);
         }
-    };
+    }
     if (operator == 3) {
         currentInput = eval(memory) + eval(currentInput);
-    };
+    }
     if (operator == 4) {
         currentInput = eval(memory) - eval(currentInput);
-    };
+    }
     if (operator == 5 && currentInput < 0) {
         var powerOf = -1 * eval(currentInput);
         var base = eval(memory);
@@ -137,7 +128,7 @@ function calculate() {
             console.log(base + "^" + (i + 1) + " = " + final);
         }
         currentInput = final;
-    };
+    }
     operator = 0; //clear operator
     memory = "0"; //clear memory
     displayCurrentInput();
@@ -284,7 +275,7 @@ function mr() {
 /**
  * Adds the current calc input from the stored memory
  */
-function mplus() {
+function mPlus() {
     otherMemory = eval(otherMemory) + eval(currentInput);
     console.log("memory is " + otherMemory);
 }
@@ -292,6 +283,6 @@ function mplus() {
 /**
  * Subtracts the current calc input from the stored memory
  */
-function mminus() {
+function mMinus() {
     otherMemory = eval(otherMemory) - eval(currentInput);
 }
