@@ -1,24 +1,12 @@
-/** TODO:
- * 1. Add these new functions: percentage, inverse, factorial, square and square root
- * 2. Bootstrap it to make it pretty!
- * 3. User can only type numbers in the display (30 max!), and the numbers are right aligned.
- * 4. Fix divide by 0 errors!
- * 5. Add the ability to clear the current input, but not memory.
- * 6. Challenge: Add trig functions (in radian AND degree mode)
- * 7. Extra Challenge: Add mc, m+, m-, mr butons that work!
- * 8. Super Challenge: Add ( and ) buttons that work!
- * 9. Super Duper Challenge: Add exponents (negatives too!)
- */
-
-var currentInput = "0";
+var current_input = "0";
 var memory = "0";
 var operator = 0;
-var otherMemory = currentInput;
+var other_Memory = current_input;
 var deg = 0;
 var rad = 1;
 // Helper function for displaying the current input
 function displayCurrentInput() {
-    document.getElementById('screen').value = currentInput;
+    document.getElementById('screen').value = current_input;
 }
 
 /**
@@ -26,14 +14,14 @@ function displayCurrentInput() {
  * @param {string} dig The # that the player inputs
  */
 function addDigit(dig) {
-    if (currentInput.length + 1 > 18) {
+    if (current_input.length + 1 > 18) {
         alert("No more than 18 characters");
     }
-    if ((eval(currentInput) == 0) && (currentInput.indexOf(".") == -1)) {
-        currentInput = dig;
+    if ((eval(current_input) == 0) && (current_input.indexOf(".") == -1)) {
+        current_input = dig;
     }
     else {
-        currentInput = currentInput + dig;
+        current_input = current_input + dig;
     }
     displayCurrentInput();
 }
@@ -42,14 +30,14 @@ function addDigit(dig) {
  * Adds a decimal point to the number
  */
 function addDecimal() {
-    if (currentInput.length == 0) {
+    if (current_input.length == 0) {
         //no leading ".", use "0."
-        currentInput = "0.";
+        current_input = "0.";
     }
     else {
         // First make sure one doesn't exist
-        if (currentInput.indexOf(".") == -1) {
-            currentInput = currentInput + ".";
+        if (current_input.indexOf(".") == -1) {
+            current_input = current_input + ".";
         }
     }
     displayCurrentInput();
@@ -59,7 +47,7 @@ function addDecimal() {
  * Clears everything
  */
 function allClear() {
-    currentInput = "";
+    current_input = "";
     console.log("Current input cleared");
     operator = 0; //clear operator
     console.log("Operator cleared");
@@ -89,8 +77,8 @@ function storeOperator(op) {
         operator = 5;
         // exponent
     };
-    memory = currentInput; //store value
-    currentInput = "";
+    memory = current_input; //store value
+    current_input = "";
     displayCurrentInput();
     console.log(op);
     console.log(operator);
@@ -102,41 +90,41 @@ function storeOperator(op) {
  */
 function calculate() {
     if (operator == 1) {
-        currentInput = eval(memory) * eval(currentInput);
+        current_input = eval(memory) * eval(current_input);
     };
     if (operator == 2) {
-        if (eval(currentInput) == 0) {
-            currentInput = "undefined";
+        if (eval(current_input) == 0) {
+            current_input = "undefined";
         }
         else {
-            currentInput = eval(memory) / eval(currentInput);
+            current_input = eval(memory) / eval(current_input);
         }
     };
     if (operator == 3) {
-        currentInput = eval(memory) + eval(currentInput);
+        current_input = eval(memory) + eval(current_input);
     };
     if (operator == 4) {
-        currentInput = eval(memory) - eval(currentInput);
+        current_input = eval(memory) - eval(current_input);
     };
-    if (operator == 5 && currentInput < 0) {
-        var powerOf = -1 * eval(currentInput);
+    if (operator == 5 && current_input < 0) {
+        var power_of = -1 * eval(current_input);
         var base = eval(memory);
         var final = 1;
-        for (i = 0; i < powerOf; i++) {
+        for (i = 0; i < power_of; i++) {
             final = final * base;
             console.log(base + "^" + (i + 1) + " = " + final);
         }
-        currentInput = 1 / final;
+        current_input = 1 / final;
     }
     else if (operator == 5) {
-        var powerOf = eval(currentInput);
+        var power_of = eval(current_input);
         var base = eval(memory);
         var final = 1;
-        for (i = 0; i < powerOf; i++) {
+        for (i = 0; i < power_of; i++) {
             final = final * base;
             console.log(base + "^" + (i + 1) + " = " + final);
         }
-        currentInput = final;
+        current_input = final;
     };
     operator = 0; //clear operator
     memory = "0"; //clear memory
@@ -147,7 +135,7 @@ function calculate() {
  * Changes the sign of the current input
  */
 function changeSign() {
-    currentInput = -1 * currentInput;
+    current_input = -1 * current_input;
     displayCurrentInput();
 }
 
@@ -155,7 +143,7 @@ function changeSign() {
  * Resets the current input to 0
  */
 function pleaseClear() {
-    currentInput = "0";
+    current_input = "0";
     console.log("Current input cleared");
     console.log("Operator remains " + operator + " and memory remains " + memory);
     displayCurrentInput();
@@ -165,9 +153,9 @@ function pleaseClear() {
  * Converts the current input into a percentage
  */
 function percentage() {
-    if (currentInput.indexOf("%") == -1) {
-        currentInput = currentInput * 100;
-        currentInput = currentInput.toString() + "%";
+    if (current_input.indexOf("%") == -1) {
+        current_input = current_input * 100;
+        current_input = current_input.toString() + "%";
     }
     displayCurrentInput();
 }
@@ -178,14 +166,14 @@ function percentage() {
 function factorial() {
     var i = "";
     var fact = 1;
-    if (currentInput < 0) {
-        currentInput = "undefined";
+    if (current_input < 0) {
+        current_input = "undefined";
     }
     else {
-        for (i = 1; i <= currentInput; i++) {
-            fact = fact * i;
+        for (i = 1; i <= current_input; i++) {
+            fact = fact * iother_Memory;
         }
-        currentInput = fact;
+        current_input = fact;
     }
     displayCurrentInput();
 }
@@ -194,7 +182,7 @@ function factorial() {
  * Squares the current input
  */
 function square() {
-    currentInput = currentInput * currentInput;
+    current_input = current_input * current_input;
     displayCurrentInput();
 }
 
@@ -202,15 +190,15 @@ function square() {
  * Calculates the square root of the current input
  */
 function squareRoot() {
-    if (currentInput == -1) {
-        currentInput = "i";
+    if (current_input == -1) {
+        current_input = "i";
     }
-    else if (currentInput < 0) {
-        currentInput = Math.sqrt(currentInput * -1);
-        currentInput = currentInput.toString() + "i";
+    else if (current_input < 0) {
+        current_input = Math.sqrt(current_input * -1);
+        current_input = current_input.toString() + "i";
     }
     else {
-        currentInput = Math.sqrt(currentInput);
+        current_input = Math.sqrt(current_input);
     }
     displayCurrentInput();
 }
@@ -219,7 +207,7 @@ function squareRoot() {
  * Calculates the inverse of the current input
  */
 function inverse() {
-    currentInput = 1 / currentInput;
+    current_input = 1 / current_input;
     displayCurrentInput();
 }
 
@@ -227,7 +215,7 @@ function inverse() {
  * Takes the sine of the current input
  */
 function sin() {
-    currentInput = Math.sin(currentInput);
+    current_input = Math.sin(current_input);
     displayCurrentInput();
 }
 
@@ -235,7 +223,7 @@ function sin() {
  * Takes the cosine of the current input
  */
 function cos() {
-    currentInput = Math.cos(currentInput);
+    current_input = Math.cos(current_input);
     displayCurrentInput();
 }
 
@@ -243,7 +231,7 @@ function cos() {
  * Takes the tangent of the current input
  */
 function tan() {
-    currentInput = Math.tan(currentInput);
+    current_input = Math.tan(current_input);
     displayCurrentInput();
 }
 
@@ -251,7 +239,7 @@ function tan() {
  * Changes the input from degrees to radians
  */
 function toRadian() {
-    currentInput = currentInput * (Math.PI / 180);
+    current_input = current_input * (Math.PI / 180);
     displayCurrentInput();
     console.log("working");
 }
@@ -260,7 +248,7 @@ function toRadian() {
  * Changes the input from radians to degrees
  */
 function toDegree() {
-    currentInput = currentInput * (180 / Math.PI);
+    current_input = current_input * (180 / Math.PI);
     displayCurrentInput();
 }
 
@@ -268,30 +256,30 @@ function toDegree() {
  * Saves the memory as the current input
  */
 function ms() {
-    otherMemory = currentInput;
-    console.log(otherMemory);
+    other_Memory = current_input;
+    console.log(other_Memory);
 }
 
 /**
  * Recalls the saved memory
  */
 function mr() {
-    currentInput = otherMemory;
+    current_input = other_Memory;
     displayCurrentInput();
-    console.log("memory is " + otherMemory);
+    console.log("memory is " + other_Memory);
 }
 
 /**
  * Adds the current calc input from the stored memory
  */
 function mplus() {
-    otherMemory = eval(otherMemory) + eval(currentInput);
-    console.log("memory is " + otherMemory);
+    other_Memory = eval(other_Memory) + eval(current_input);
+    console.log("memory is " + other_Memory);
 }
 
 /**
  * Subtracts the current calc input from the stored memory
  */
 function mminus() {
-    otherMemory = eval(otherMemory) - eval(currentInput);
+    other_Memory = eval(other_Memory) - eval(current_input);
 }
