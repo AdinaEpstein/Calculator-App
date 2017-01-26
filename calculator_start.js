@@ -9,6 +9,7 @@
  * 8. Super Challenge: Add ( and ) buttons that work!
  * 9. Super Duper Challenge: Add exponents (negatives too!)
  */
+
 var currentInput = "0";
 var memory = "0";
 var operator = 0;
@@ -19,7 +20,11 @@ var rad = 1;
 function displayCurrentInput() {
     document.getElementById('screen').value = currentInput;
 }
-// Adds a digit to the current input
+
+/**
+ * Adds a digit
+ * @param {string} dig The # that the player inputs
+ */
 function addDigit(dig) {
     if (currentInput.length + 1 > 18) {
         alert("No more than 18 characters");
@@ -32,7 +37,10 @@ function addDigit(dig) {
     }
     displayCurrentInput();
 }
-// Adds a decimal to the current input
+
+/**
+ * Adds a decimal point to the number
+ */
 function addDecimal() {
     if (currentInput.length == 0) {
         //no leading ".", use "0."
